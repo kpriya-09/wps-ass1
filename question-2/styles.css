@@ -1,0 +1,25 @@
+body{
+	background-color: #0F3460;
+}
+#wrapper{
+	display:flex;
+	flex-direction:column;
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+}
+#above, #below{
+	text-align: center;
+	padding:1rem;
+}
+
+#img-above{
+	width:600px;
+	height:400px;
+}
+#text-below{
+	color:#E94560;
+	font-size: 40px;
+	font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

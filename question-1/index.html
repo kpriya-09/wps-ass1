@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Form</title>
+	<link rel="stylesheet" href="./styles.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script>
+	$(document).ready(function(){
+	$("select").change(function(){
+		$(this).find("option:selected").each(function(){
+		var optionValue = $(this).attr("value");
+		if(optionValue){
+			$(".section").not("." + optionValue).hide();
+			$("." + optionValue).show();
+		} else{
+			$(".section").hide();
+		}
+		});
+	}).change();
+	$('#info-form').submit(function(event) {
+		var $inputs = $('#info-form :input');
+		var values = {};
+		$inputs.each(function() {
+			var name = "<p class='text'>"+this.name+": </p>";
+			var value = "<p class='text'>"+this.value+"</p>";
+			$(".infoDisplay").append(name,value);
+			values[this.name] = $(this).val();
+		});
+		console.log(values);
+		event.preventDefault();
+	});
+	$("#reset").click(function(){
+		$("#info-form").trigger("reset");
+		$("p").remove(".text");
+	})
+	});
+	
+	</script>
+</head>
+<body>	
+	<main>
+		<div>
+			<select>
+			<option>Choose</option>
+			<option value="personal">Personal information</option>
+			<option value="academic">Academic information</option>
+			<option value="attendance">Attendance information</option>
+			<option value="proctor">Proctor information</option>
+			</select>
+		</div>
+		<form id="info-form">
+		<div class="personal section">
+			<table>
+				<tr>
+					<td>Full Name:</td>
+					<td><input type="text" name="Full Name" class="name input" placeholder="Enter your name" \></td>
+				</tr>
+				<tr>
+					<td>Date of birth:</td>
+					<td><input type="date" name="Date of birth" class="dob input" placeholder="Enter your dob" \></td>
+				</tr>
+				<tr>
+					<td>Gender:</td>
+					<td><input type="text" name="Gender" class="gender input" placeholder="Enter your gender(m/f/nb)" \></td>
+				</tr>
+			</table>
+		</div>
+		<div class="proctor section">
+			<table>
+				<tr>
+					<td>Full Name:</td>
+					<td><input type="text" name="Proctor name" class="pname input" placeholder="Enter your proctor's name" \></td>
+				</tr>
+				<tr>
+					<td>Date of birth:</td>
+					<td><input type="date" name="Proctor dob" class="pdob input" placeholder="Enter your proctor's dob" \></td>
+				</tr>
+				<tr>
+					<td>Gender:</td>
+					<td><input type="text" name="Proctor gender" class="pgender input" placeholder="Enter your proctor's gender(m/f/nb)" \></td>
+				</tr>
+			</table>
+		</div>
+		<div class="academic section">
+			<table>
+				<tr>
+					<td>CGPA:</td>
+					<td><input type="text" name="CGPA" class="cgpa input" placeholder="Enter your cgpa till the last semester" \></td>
+				</tr>
+				<tr>
+					<td>Current Semester:</td>
+					<td><input type="text" name="Current Semester" class="sem input" placeholder="Enter your current semester" \></td>
+				</tr>
+				<tr>
+					<td>Backlogs:</td>
+					<td><input type="text" name="# of Backlogs" class="back input" placeholder="Enter the number of backlogs" \></td>
+				</tr>
+			</table>
+		</div>
+		<div class="attendance section">
+			<table>
+				<tr>
+					<td>Attendance percentage:</td>
+					<td><input type="text" name="Attendance percentage" class="att input" placeholder="Enter your name" \></td>
+				</tr>
+			</table>
+		</div>
+		<button id="submit" type="submit">Submit</button>
+		<button id="reset" type="reset">Reset</button>
+		</form>
+		<div class="infoDisplay"></div>
+	</main>
+</body>
+</html>
